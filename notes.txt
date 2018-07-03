@@ -21,8 +21,7 @@ Durability: interacting with hardware configuration
 
 
 
-
-
+Shorthand Reference:
 
 
 [1] http://www.clusterdb.com/mysql-cluster/how-can-a-database-be-in-memory-and-durable-at-the-same-time
@@ -42,4 +41,5 @@ You can specify the type by giving MYISAM OR InnoDB while creating a table in DB
 
 [4] https://dev.mysql.com/doc/refman/5.7/en/innodb-introduction.html
 
+[5] https://docs.oracle.com/javase/tuDBtorial/jdbc/basics/
 
