@@ -175,6 +175,10 @@ public class Group1 {
 			conn.close();
 			return;
 		} // main
+		
+		System.out.println("\nCommiting data here....");
+
+       		// clean-up / conclude environment 
 		conn.commit();
 		stmt.close();
 		conn.close();
