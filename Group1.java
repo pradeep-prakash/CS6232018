@@ -179,17 +179,17 @@ public class Group1 {
 		conn.commit();
 
 		// list available records
-		String sql = "SELECT id, first, last, age FROM Product";
+		String sql = "SELECT * FROM Product";
 		ResultSet rs = stmt.executeQuery(sql);
 		System.out.println("Product listed for reference....");
 		printRs(rs);
 		
-		sql = "SELECT id, first, last, age FROM Stock";
+		sql = "SELECT * FROM Stock";
 		rs = stmt.executeQuery(sql);
 		System.out.println("Stock listed for reference....");
 		printRs(rs);
 		
-		sql = "SELECT id, first, last, age FROM Depot";
+		sql = "SELECT * FROM Depot";
 		rs = stmt.executeQuery(sql);
 		System.out.println("Depot listed for reference....");
 		printRs(rs);
