@@ -54,14 +54,38 @@ public class Group1 {
 		conn.commit();
 
 		// list available records
-		String sql = "SELECT id, first, last, age FROM Employees";
+		String sql = "SELECT id, first, last, age FROM Product";
 		ResultSet rs = stmt.executeQuery(sql);
-		System.out.println("List result set for reference....");
+		System.out.println("Product listed for reference....");
 		printRs(rs);
 		
+		sql = "SELECT id, first, last, age FROM Stock";
+		rs = stmt.executeQuery(sql);
+		System.out.println("Stock listed for reference....");
+		printRs(rs);
+		
+		sql = "SELECT id, first, last, age FROM Depot";
+		rs = stmt.executeQuery(sql);
+		System.out.println("Depot listed for reference....");
+		printRs(rs);
+		
+
 		// clean-up / conclude environment 
 		rs.close();
 		stmt1.close();
 		conn.close();
 	}
 }
+
+ResultSet rs = stmt.executeQuery ("select *
+from student");
+• This sends the query to the database and
+returns the result of the query as a ResultSet.
+• The method next moves the cursor to the
+next row and makes that row the one on
+which we can operate.
+• We use getXXX (getFloat, getString,
+getInt) to retrieve the value in each column.
+
+
+
