@@ -1,0 +1,32 @@
+Shorthand Reference:
+
+
+[1] http://www.clusterdb.com/mysql-cluster/how-can-a-database-be-in-memory-and-durable-at-the-same-time
+
+SET ndb_table_no_logging=0;
+
+
+[2] https://dev.mysql.com/doc/refman/5.6/en/mysql-acid.html
+
+
+[3] https://stackoverflow.com/questions/3818759/what-is-innodb-and-myisam-in-mysql
+InnoDB and MYISAM, are storage engines for MySQL.
+
+These two differ on their locking implementation: InnoDB locks the particular row in the table, and MyISAM locks the entire MySQL table.
+
+You can specify the type by giving MYISAM OR InnoDB while creating a table in DB.
+
+[4] https://dev.mysql.com/doc/refman/5.7/en/innodb-introduction.html
+
+[5] https://docs.oracle.com/javase/tuDBtorial/jdbc/basics/
+
+[6] https://www.tutorialspoint.com/jdbc/commit-rollback.htm
+
+[7] https://dev.mysql.com/doc/refman/5.6/en/glossary.html#glos_doublewrite_buffer
+"
+InnoDB uses a file flush technique called doublewrite. Before writing pages to the data files, InnoDB first writes them to a contiguous area called the doublewrite buffer. Only after the write and the flush to the doublewrite buffer have completed, does InnoDB write the pages to their proper positions in the data file. If there is an operating system, storage subsystem, or mysqld process crash in the middle of a page write, InnoDB can later find a good copy of the page from the doublewrite buffer during crash recovery.
+
+Although data is always written twice, the doublewrite buffer does not require twice as much I/O overhead or twice as many I/O operations. Data is written to the buffer itself as a large sequential chunk, with a single fsync() call to the operating system.
+
+To turn off the doublewrite buffer, specify the option innodb_doublewrite=0. 
+"

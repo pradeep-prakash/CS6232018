@@ -77,6 +77,7 @@ public class Group1 {
 	}
 }
 
+
 ResultSet rs = stmt.executeQuery ("select *
 from student");
 • This sends the query to the database and
