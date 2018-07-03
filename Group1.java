@@ -175,28 +175,10 @@ public class Group1 {
 			conn.close();
 			return;
 		} // main
-		System.out.println("Commiting data here....");
-		conn.commit();
-
-		// list available records
-		String sql = "SELECT * FROM Product";
-		ResultSet rs = stmt.executeQuery(sql);
-		System.out.println("Product listed for reference....");
-		printRs(rs);
-		
-		sql = "SELECT * FROM Stock";
-		rs = stmt.executeQuery(sql);
-		System.out.println("Stock listed for reference....");
-		printRs(rs);
-		
-		sql = "SELECT * FROM Depot";
-		rs = stmt.executeQuery(sql);
-		System.out.println("Depot listed for reference....");
-		printRs(rs);
-		
+		System.out.println("\nCommiting data...");
 
 		// clean-up / conclude environment 
-		rs.close();
+		conn.commit();
 		stmt.close();
 		conn.close();
 	}
