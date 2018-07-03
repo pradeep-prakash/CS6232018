@@ -30,6 +30,9 @@ public class Group1 {
 	
 			Statement stmt = null;
 			try {
+				System.out.println("Group 1 – The product p1 is deleted from Product and Stock\n"
+						+ "Pradeep Prakash & Jonathan Koller\n" );
+				
 				// create statement object
 				stmt = conn.createStatement();
 				//Drop tables if they exist
@@ -64,8 +67,8 @@ public class Group1 {
 						+ "dep CHAR(15),"
 						+ "quantity INTEGER,"
 						+ "PRIMARY KEY (prod, dep),"
-						+ "FOREIGN KEY (prod) REFERENCES Product (prod)," 
-						+ "FOREIGN KEY (dep) REFERENCES Depot (dep)"
+						+ "FOREIGN KEY (prod) REFERENCES Product (prod) ON DELETE CASCADE," 
+						+ "FOREIGN KEY (dep) REFERENCES Depot (dep) ON DELETE CASCADE"
 						+ ")");			
 				
 				//Insert values in Product table
@@ -90,6 +93,78 @@ public class Group1 {
 						+ "('p2', 'd4', 1500)," 
 						+ "('p2', 'd1', -400)," 
 						+ "('p2', 'd2', 2000);");
+				
+				//Output of Tables before operation
+				
+				System.out.println("Tables before performing delete operation\n");
+				
+				ResultSet producttable = stmt.executeQuery("select * from Product");
+				System.out.println("Product Table:");
+				System.out.println("prod " + "pname " + "price");
+				while(producttable.next()) {
+					System.out.println( producttable.getString("prod")
+							+ "\t " + producttable.getString("pname")
+							+ "\t " + producttable.getInt("price"));
+				} 
+				
+				ResultSet depottable = stmt.executeQuery("select * from Depot");
+				System.out.println("\nDepot Table:");
+				System.out.println("dep " + "address " + "volume");
+				while(depottable.next()) {
+					System.out.println( depottable.getString("dep")
+							+ "\t " + depottable.getString("addr")
+							+ "\t " + depottable.getInt("volume"));
+				} 
+				
+				ResultSet stocktable = stmt.executeQuery("select * from Stock");
+				System.out.println("\nStock Table");
+				System.out.println("prod " + "dep " + "quantity");
+				while(stocktable.next()) {
+					System.out.println(stocktable.getString("prod") 
+							+ "\t " + stocktable.getString("dep") 
+							+ "\t " + stocktable.getInt("quantity"));
+				} 
+				
+				
+				
+				//Tables output after delete operation
+				System.out.println("\nTables after performing delete operation");
+				System.out.println("p1 is deleted from Product & Stock tables\n");
+				
+				stmt.executeUpdate("DELETE FROM Product WHERE prod = 'p1'");
+				stmt.executeUpdate("DELETE FROM Stock WHERE prod = 'p1'");
+				
+				ResultSet productresult = stmt.executeQuery("select * from Product");
+				System.out.println("\nProduct Table:");
+				System.out.println("prod " + "pname " + "price");
+				while(productresult.next()) {
+					System.out.println( productresult.getString("prod") 
+							+ "\t " + productresult.getString("pname") 
+							+ "\t " + productresult.getInt("price"));
+				} 
+				
+				
+				
+				ResultSet depotresult = stmt.executeQuery("select * from Depot");
+				System.out.println("\nDepot Table:");
+				System.out.println("dep " + "address " + "volume");
+				while(depotresult.next()) {
+					System.out.println( depotresult.getString("dep")
+							+ "\t " + depotresult.getString("addr")
+							+ "\t " + depotresult.getInt("volume"));
+				} 
+				
+				ResultSet stockresult = stmt.executeQuery("select * from Stock");
+				System.out.println("\nStock Table");
+				System.out.println("prod " + "dep " + "quantity");
+				while(stockresult.next()) {
+					System.out.println(stockresult.getString("prod") 
+							+ "\t " + stockresult.getString("dep") 
+							+ "\t " + stockresult.getInt("quantity"));
+				} 
+				
+				
+				
 				
 		} catch (SQLException e) {
 			System.out.println("catch Exception");
