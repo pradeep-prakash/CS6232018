@@ -71,6 +71,7 @@ public class Group1 {
 						+ "FOREIGN KEY (dep) REFERENCES Depot (dep) ON DELETE CASCADE"
 						+ ")");			
 				
+				
 				//Insert values in Product table
 				stmt.executeUpdate("INSERT INTO Product (prod, pname, price) Values" 
 						+ "('p1', 'tape', 2.5)," 
@@ -94,9 +95,11 @@ public class Group1 {
 						+ "('p2', 'd1', -400)," 
 						+ "('p2', 'd2', 2000);");
 				
-				//Output of Tables before operation
 				
+				
+				//Output of Tables before operation
 				System.out.println("Tables before performing delete operation\n");
+				
 				
 				ResultSet producttable = stmt.executeQuery("select * from Product");
 				System.out.println("Product Table:");
@@ -126,17 +129,21 @@ public class Group1 {
 				} 
 				
 				
+												
 				
-				//Tables output after delete operation
-				System.out.println("\nAttempting to delete 'p1' from Product table\n");
-				stmt.executeUpdate("DELETE FROM Product WHERE prod = 'p1'");
-				
-				
-			  {System.out.println("\nAttempting to delete 'p1' from Stock table\n");
+				System.out.println("\nAttempting to delete 'p1' from Stock table");
 				stmt.executeUpdate("DELETE FROM Stock WHERE prod = 'p1'");
 				
-				System.out.println("Tables after performing delete operation");
 				
+				//Atomicity demo
+				/* {System.out.println("\nAttempting to delete 'p1' from Depot table\n");
+				stmt.executeUpdate("DELETE FROM Depot WHERE prod = 'p1'");
+				}
+				*/
+				
+				
+				
+			/*{//Isolation demo
 				ResultSet productresult = stmt.executeQuery("select * from Product");
 				System.out.println("\nProduct Table:");
 				System.out.println("prod " + "pname " + "price");
@@ -145,9 +152,7 @@ public class Group1 {
 							+ "\t " + productresult.getString("pname") 
 							+ "\t " + productresult.getInt("price"));
 				} 
-				
-				
-				
+							
 				ResultSet depotresult = stmt.executeQuery("select * from Depot");
 				System.out.println("\nDepot Table:");
 				System.out.println("dep " + "address " + "volume");
@@ -165,12 +170,47 @@ public class Group1 {
 							+ "\t " + stockresult.getString("dep") 
 							+ "\t " + stockresult.getInt("quantity"));
 				}
-			   }
-			  
+			   } */
+				
+				
+				System.out.println("\nAttempting to delete 'p1' from Product table\n");
+				stmt.executeUpdate("DELETE FROM Product WHERE prod = 'p1'");
+			   
+			  	System.out.println("Tables after performing delete operation");
+				
+				ResultSet productresult1 = stmt.executeQuery("select * from Product");
+				System.out.println("\nProduct Table:");
+				System.out.println("prod " + "pname " + "price");
+				while(productresult1.next()) {
+					System.out.println( productresult1.getString("prod") 
+							+ "\t " + productresult1.getString("pname") 
+							+ "\t " + productresult1.getInt("price"));
+				} 
 				
 				
 				
+				ResultSet depotresult1 = stmt.executeQuery("select * from Depot");
+				System.out.println("\nDepot Table:");
+				System.out.println("dep " + "address " + "volume");
+				while(depotresult1.next()) {
+					System.out.println( depotresult1.getString("dep")
+							+ "\t " + depotresult1.getString("addr")
+							+ "\t " + depotresult1.getInt("volume"));
+				} 
 				
+				ResultSet stockresult1 = stmt.executeQuery("select * from Stock");
+				System.out.println("\nStock Table");
+				System.out.println("prod " + "dep " + "quantity");
+				while(stockresult1.next()) {
+					System.out.println(stockresult1.getString("prod") 
+							+ "\t " + stockresult1.getString("dep") 
+							+ "\t " + stockresult1.getInt("quantity"));
+				}
+			   
+				
+				
+				
+							
 		} catch (SQLException e) {
 			System.out.println("Operation Failed, catch Exception:");
 			System.out.println(e);
