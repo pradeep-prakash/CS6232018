@@ -69,7 +69,9 @@ public class Group1 {
 			return;
 		} 	
 		System.out.println("\nCommiting data here....");
-		CleanUp(stmt,conn);		
+        	conn.commit();
+       		stmt.close();
+		conn.close();		
 	}
 
 
