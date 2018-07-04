@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 
 //Pradeep Prakash & Jonathan Koller
-//Group 1 – The product p1 is deleted from Product and Stock
+//Group 1 – To delete product 'p1' from Product and Stock Tables
 public class Group1 {
 	
 
@@ -30,7 +30,7 @@ public class Group1 {
 	
 			Statement stmt = null;
 			try {
-				System.out.println("Group 1 – The product p1 is deleted from Product and Stock\n"
+				System.out.println("Group 1 – To delete product 'p1' from Product and Stock Tables\n"
 						+ "Pradeep Prakash & Jonathan Koller\n" );
 				
 				// create statement object
@@ -128,11 +128,13 @@ public class Group1 {
 				
 				
 				//Tables output after delete operation
-				System.out.println("\nTables after performing delete operation");
-				System.out.println("p1 is deleted from Product & Stock tables\n");
-				
+				System.out.println("\nAttempting to delete 'p1' from Product table\n");
 				stmt.executeUpdate("DELETE FROM Product WHERE prod = 'p1'");
+						
+			  {System.out.println("\nAttempting to delete 'p1' from Stock table\n");
 				stmt.executeUpdate("DELETE FROM Stock WHERE prod = 'p1'");
+				
+				System.out.println("Tables after performing delete operation");
 				
 				ResultSet productresult = stmt.executeQuery("select * from Product");
 				System.out.println("\nProduct Table:");
@@ -161,13 +163,15 @@ public class Group1 {
 					System.out.println(stockresult.getString("prod") 
 							+ "\t " + stockresult.getString("dep") 
 							+ "\t " + stockresult.getInt("quantity"));
-				} 
+				}
+			   }
+			  
 				
 				
 				
 				
 		} catch (SQLException e) {
-			System.out.println("catch Exception");
+			System.out.println("Operation Failed, catch Exception:");
 			System.out.println(e);
 			// For atomicity
 			conn.rollback();
@@ -178,9 +182,10 @@ public class Group1 {
 		
 		System.out.println("\nCommiting data here....");
 
-       		// clean-up / conclude environment 
-		conn.commit();
-		stmt.close();
-		conn.close();
+        // clean-up / conclude environment 
+        conn.commit();
+        stmt.close();
+        conn.close();
+		
 	}
 }
